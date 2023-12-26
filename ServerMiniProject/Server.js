@@ -13,7 +13,7 @@ app.listen(9000,()=>{
 var con = db.createConnection({
     host:"localhost",
     user:"root",
-    password:"root",
+    password:"mayur",
     database:"tiffinschema2"
 })
 

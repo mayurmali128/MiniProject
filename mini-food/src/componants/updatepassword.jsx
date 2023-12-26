@@ -24,6 +24,9 @@ export default function UpdatePassword(){
 
     const [cust,dispatch] = useReducer(reducer,init);
 
+    //for captcha
+    const[capVal,setCapVal] = useState(null);
+
     const checkValid = (fld,v)=>{
         var ch = true;
         var msg = "Looks good!";
@@ -90,14 +93,13 @@ export default function UpdatePassword(){
             // console.log(response.data)
             setMsg(response.data);
             dispatch(init);
+            setCapVal(null);
+
           }, (error) => {
             console.log(error);
           });
     }
 
-
-    // for capcha
-    const[capVal,setCapVal] = useState(null);
     
     return(
         <div>
