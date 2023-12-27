@@ -1,7 +1,7 @@
 import { useReducer, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
 import {Link } from "react-router-dom";
-import { login, logout } from "../loggedslice";
+import { login } from "../loggedslice";
 import { useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import Header from "./Header";
@@ -58,7 +58,8 @@ const LoginForm = ()=>{
     //for capcha
     const[capVal,setCapVal] = useState(null);
     const[str,setStr] = useState('false');
-    const dispatchRedux = useDispatch()
+    const dispatchRedux = useDispatch();
+
     const checkLogin = (e)=>{
         e.preventDefault();
         console.log(cust);
@@ -75,7 +76,7 @@ const LoginForm = ()=>{
         .then(str =>{
             console.log(str);
             if(str=='true'){
-                dispatchRedux(login());
+                dispatchRedux(loginlogout{type:"login",user:cust.username.value,val:true});
                 navigate('/dashboard');
             }
             else{

@@ -1,11 +1,14 @@
 import { Link } from "react-router-dom";
 import { useDispatch} from "react-redux";
-import { logout } from "../loggedslice";
+import { logout, setUsername } from "../loggedslice";
 import { useNavigate } from "react-router-dom";
+import { useSelector } from "react-redux"
 
 const UserHeader = () => {
   const dispatchRedux = useDispatch();
     let navigate = useNavigate();
+    const myusername = useSelector(state=>state.logged);
+    console.log("Username: "+ myusername.value+ " -->"+ myusername.username)
     return (
       <div className="flex justify-around items-center p-5 shadow-md">
         <h2 className="text-4xl font-bold text-rear ">MessWala</h2>
@@ -21,6 +24,8 @@ const UserHeader = () => {
              dispatchRedux(logout());
              navigate('/login');
           }}style={{ textDecoration: "none" }} >Log Out</Link>
+
+          <p style={{color:"lightblue"}}>Welcome</p>
         </div>
       </div>
     );
