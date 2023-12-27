@@ -25,7 +25,7 @@ const UserHeader = () => {
              navigate('/login');
           }}style={{ textDecoration: "none" }} >Log Out</Link>
 
-          <p style={{color:"lightblue"}}>Welcome</p>
+          <p style={{color:"pink"}}>Hello! {localStorage.getItem('user')}</p>
         </div>
       </div>
     );

@@ -195,20 +195,20 @@ app.post('/insertdata',(req,res)=>{
 })
 
 app.post('/updatepass',(req,res)=>{
-    let email=req.body.email;
+    let username=req.body.username;
     var oldpassword = req.body.oldpassword;
     let newpassword=req.body.newpassword;
-    let query="select * from user where email=?"
+    let query="select * from user where username=?"
     
-    con.query(query,[email],(err,data)=>{
+    con.query(query,[username],(err,data)=>{
         if(!err){
             if(data.length>=1){
-                let q = "select * from user where email=? and password=?"
-                con.query(q,[email,hashPassword(oldpassword)],(err,data1)=>{
+                let q = "select * from user where username=? and password=?"
+                con.query(q,[username,hashPassword(oldpassword)],(err,data1)=>{
                     if(!err){
                         if(data1.length>=1){
-                            let q1 = "update user set password=? where email=?"
-                            con.query(q1,[hashPassword(newpassword),email],(err)=>{
+                            let q1 = "update user set password=? where username=?"
+                            con.query(q1,[hashPassword(newpassword),username],(err)=>{
                                 if(!err){
                                     res.send("Password changed successfully.");
                                 }

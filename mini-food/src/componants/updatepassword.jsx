@@ -30,14 +30,7 @@ export default function UpdatePassword(){
     const checkValid = (fld,v)=>{
         var ch = true;
         var msg = "Looks good!";
-        switch(fld){
-            case "email":
-                var exp3 = /^[a-z0-9]+@[a-z]+\.[a-z]{2,3}$/;
-                if(!exp3.test(v)){
-                    ch=false;
-                    msg = "Please enter valid email."
-                }
-                break;          
+        switch(fld){       
             case "newpassword":
                 var exp6 = /^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).{8,15}$/;
                 if(!exp6.test(v)){
@@ -84,7 +77,7 @@ export default function UpdatePassword(){
         console.log("Inside submit");
         e.preventDefault();
         axios.post('http://localhost:9000/updatepass', {
-            email: cust.email.value,
+            username: localStorage.getItem('user'),
             oldpassword:cust.oldpassword.value,
             newpassword:cust.newpassword.value
           })
@@ -106,18 +99,7 @@ export default function UpdatePassword(){
             <UserHeader/>
             <div className="container mt-5  col-md-4 bg-light needs-validation pb-5 pt-5 rounded">
 
-                {/* email */}
-                <label  className="form-label">Email</label>
-                <input type="email" className={cust.email.touch?(cust.email.valid? "form-control is-valid":"form-control is-invalid"):"form-control"} id="validationServer01" placeholder="email" required
-                value={cust.email.value}
-                onChange={(e)=>{
-                    handleChange("email",e.target.value);
-                }}/>
-                <div className={cust.email.valid?"valid-feedback":"invalid-feedback"}>
-                    {cust.email.error}
-                </div>
-
-                {/* old password */}
+                {/* old password*/}
                 <label className="form-label ">Old Password</label>
                 <div class="input-group has-validation">
                     {/* <label for="validationServer01" class="form-label">Password</label> */}
@@ -160,7 +142,7 @@ export default function UpdatePassword(){
                 </div>
 
                 <div class="mt-3 d-grid gap-2 ms-5 me-5">
-                    <button className={cust.email.valid && cust.oldpassword.valid && cust.newpassword.valid && cust.confirmnewpassword.valid 
+                    <button className={cust.oldpassword.valid && cust.newpassword.valid && cust.confirmnewpassword.valid 
                     && capVal != null? "btn btn-primary":"btn btn-primary disabled"} 
                         onClick={(e)=>{
                             submitData(e);

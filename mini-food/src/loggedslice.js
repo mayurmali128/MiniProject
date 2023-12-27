@@ -4,27 +4,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const loggedSlice = createSlice({
     name: "logged",
     initialState: {
-        value: false,
-        username:"",
+        value: false
     },
     reducers : {
-        loginlogout: (state,action)=> {
+        login: (state)=> {state.value=true},
 
-            if(action.type=="login"){
-                return {...state,value:true,username:action.user};
-            }
-            else{
-                return {...state,value:false ,username:""};
-            }
-        },
-
-        // logout: (state) => { return {value:false, username:""}},
-
-        // setUsername:(state,str) => {state.username = str}
-
-    },
+        logout: (state) => { state.value=false}
+    }
 })
 //component actions - useDispatch
-export const {loginlogout} = loggedSlice.actions
+export const {login,logout} = loggedSlice.actions
 //will be used in store
 export default loggedSlice.reducer;
